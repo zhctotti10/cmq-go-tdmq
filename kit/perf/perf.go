@@ -490,7 +490,7 @@ func test(c *Case) {
 							now := time.Now()
 							end = &now
 						}
-						if err == nil && res.Code() == 0 && c.AckEnabled {
+						if err == nil && res != nil && res.Code() == 0 && c.AckEnabled {
 							resp, err = client.DeleteMessage(name, res.Handle())
 						} else {
 							resp = res
@@ -502,7 +502,7 @@ func test(c *Case) {
 							now := time.Now()
 							end = &now
 						}
-						if err == nil && res.Code() == 0 && c.AckEnabled {
+						if err == nil && res != nil && res.Code() == 0 && c.AckEnabled {
 							var handles []string
 							for _, msg := range res.MsgInfos() {
 								handles = append(handles, msg.Handle())
